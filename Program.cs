@@ -10,7 +10,7 @@ namespace Magic8Ball
     {
         static void Main(string[] args)
         {
-
+            Console.WriteLine("hello world");
         }
     }
 }
