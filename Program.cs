@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Threading;
 
 namespace Magic8Ball
 {
@@ -26,6 +27,13 @@ namespace Magic8Ball
                 //asks question and input
                 string questionString = AskQuestion();
 
+                //why is typed
+                if(questionString.ToLower() == "why")
+                {
+                    Console.WriteLine("Because I said so");
+                    continue;
+                }
+
                 //see if quit was typed
                 if(questionString.ToLower() == "quit")
                 {
@@ -46,6 +54,12 @@ namespace Magic8Ball
                     break;
                 }
 
+                //thinking about the answer
+                int sectosleep = randomObject.Next(5) + 1;
+                Console.ForegroundColor = ConsoleColor.Cyan;
+                Console.WriteLine("Thinking. Hold on...");
+                Thread.Sleep(sectosleep * 1000);
+
                 //Get Random Number
                 int randomNum = randomObject.Next(4);
 
@@ -55,28 +69,30 @@ namespace Magic8Ball
                     case 0:
                         {
                     Console.ForegroundColor = ConsoleColor.DarkGray;
-                    Console.WriteLine("yes");
+                    Console.WriteLine("\n yes");
                             break;
                         }
                     case 1:
                         {
                     Console.ForegroundColor = ConsoleColor.DarkGray;
-                    Console.WriteLine("no");
+                    Console.WriteLine("\n no");
                             break;
                         }
                     case 2:
                         {
                     Console.ForegroundColor = ConsoleColor.DarkGray;
-                    Console.WriteLine("Hell NO!");
+                    Console.WriteLine("\n Hell NO!");
                             break;
                         }
                     case 3:
                         {
                     Console.ForegroundColor = ConsoleColor.DarkGray;
-                    Console.WriteLine("OMG YES!");
+                    Console.WriteLine("\n OMG YES!");
                             break;
                         }
                 }
+                //time to ask again
+                Thread.Sleep(2000);
             }
 
             //restores all console color
@@ -95,7 +111,7 @@ namespace Magic8Ball
         {
             //asks question and input
             Console.ForegroundColor = ConsoleColor.White;
-            Console.Write("Ask a question: ");
+            Console.Write("\nAsk a question: ");
             Console.ForegroundColor = ConsoleColor.White;
             string questionString = Console.ReadLine();
 
